@@ -96,7 +96,7 @@ public class KitchenGameLobby : MonoBehaviour {
         return joinedLobby != null && joinedLobby.HostId == AuthenticationService.Instance.PlayerId;
     }
 
-    private async void ListLobbies() {
+    public async void ListLobbies() {
         try {
             QueryLobbiesOptions queryLobbiesOptions = new QueryLobbiesOptions {
                 Filters = new List<QueryFilter> {
@@ -165,7 +165,7 @@ public class KitchenGameLobby : MonoBehaviour {
                  }
             });
 
-            NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(allocation, "dtls"));
+            NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(allocation, "wss"));
 
             KitchenGameMultiplayer.Instance.StartHost();
             Loader.LoadNetwork(Loader.Scene.CharacterSelectScene);
@@ -184,7 +184,7 @@ public class KitchenGameLobby : MonoBehaviour {
 
             JoinAllocation joinAllocation = await JoinRelay(relayJoinCode);
 
-            NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(joinAllocation, "dtls"));
+            NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(joinAllocation, "wss"));
 
             KitchenGameMultiplayer.Instance.StartClient();
         } catch (LobbyServiceException e) {
@@ -202,7 +202,7 @@ public class KitchenGameLobby : MonoBehaviour {
 
             JoinAllocation joinAllocation = await JoinRelay(relayJoinCode);
 
-            NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(joinAllocation, "dtls"));
+            NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(joinAllocation, "wss"));
 
             KitchenGameMultiplayer.Instance.StartClient();
         } catch (LobbyServiceException e) {
@@ -220,7 +220,7 @@ public class KitchenGameLobby : MonoBehaviour {
 
             JoinAllocation joinAllocation = await JoinRelay(relayJoinCode);
 
-            NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(joinAllocation, "dtls"));
+            NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(joinAllocation, "wss"));
 
             KitchenGameMultiplayer.Instance.StartClient();
         } catch (LobbyServiceException e) {

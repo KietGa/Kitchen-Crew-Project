@@ -41,6 +41,8 @@ public class StoveCounter : BaseCounter, IHasProgress {
     }
 
     private void FryingTimer_OnValueChanged(float previousValue, float newValue) {
+        if (state.Value != State.Frying) return;
+
         float fryingTimerMax = fryingRecipeSO != null ? fryingRecipeSO.fryingTimerMax : 1f;
         OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
             progressNormalized = fryingTimer.Value / fryingTimerMax
@@ -48,6 +50,8 @@ public class StoveCounter : BaseCounter, IHasProgress {
     }
 
     private void BurningTimer_OnValueChanged(float previousValue, float newValue) {
+        if (state.Value != State.Fried) return;
+
         float burningTimerMax = burningRecipeSO != null ? burningRecipeSO.burningTimerMax: 1f;
         OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
             progressNormalized = burningTimer.Value / burningTimerMax
@@ -61,7 +65,7 @@ public class StoveCounter : BaseCounter, IHasProgress {
 
         if (state.Value == State.Burned || state.Value == State.Idle) {
             OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
-                progressNormalized = 0f
+                progressNormalized = 0f,
             });
         }
     }
@@ -152,6 +156,7 @@ public class StoveCounter : BaseCounter, IHasProgress {
     [ServerRpc(RequireOwnership = false)]
     private void SetStateIdleServerRpc() {
         state.Value = State.Idle;
+        fryingTimer.Value = 0;
     }
 
     [ServerRpc(RequireOwnership = false)]

@@ -95,14 +95,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.7228422, b: 1, a: 0.74509805}
+  m_Color: {r: 0.047413826, g: 1, b: 0.19607843, a: 0.74509805}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 7375623448582939881, guid: 39e0242329775814891ef673e48ae932,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -123,6 +124,8 @@ GameObject:
   - component: {fileID: 399073919}
   - component: {fileID: 399073921}
   - component: {fileID: 399073920}
+  - component: {fileID: 1186271577383875069}
+  - component: {fileID: 2725905397863701456}
   m_Layer: 5
   m_Name: WaitingText
   m_TagString: Untagged
@@ -179,8 +182,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Eating...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 58e92ef5833f9504b8bfcfceac88e124, type: 2}
+  m_sharedMaterial: {fileID: -5286747938414298512, guid: 58e92ef5833f9504b8bfcfceac88e124,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -212,7 +216,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 3
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 4096
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -248,6 +252,40 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1186271577383875069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399073918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e647ef30a105a0b4d97700805c711355, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PUAP_TMP
+  animationLoop: 0
+  maxVisibleCharacters: 2147483647
+  effectDatabase: {fileID: 11400000, guid: 0a97180173ff42c44b15c72ff13ed943, type: 2}
+  upgradeNotice: Full version available on Unity Asset Store
+--- !u!114 &2725905397863701456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399073918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c5b2b9221ac18f43b0b9514cc7cd170, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProceduralUIEffects.UITextTypewriter
+  charsPerSecond: 20
+  playOnEnable: 1
+  onTypingComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  upgradeInfo: Get dynamic speed control in the full version!
 --- !u!1 &523546241
 GameObject:
   m_ObjectHideFlags: 0
@@ -1001,14 +1039,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.82214797, b: 0, a: 0.74509805}
+  m_Color: {r: 0, g: 0.85313416, b: 1, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 7375623448582939881, guid: 39e0242329775814891ef673e48ae932,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1410,6 +1449,8 @@ GameObject:
   - component: {fileID: 5656715179976524768}
   - component: {fileID: 3564674501146460981}
   - component: {fileID: 5724638687859087875}
+  - component: {fileID: 1989386540368441339}
+  - component: {fileID: 997566357278075921}
   m_Layer: 5
   m_Name: WaitingText
   m_TagString: Untagged
@@ -1466,8 +1507,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Thinking...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 58e92ef5833f9504b8bfcfceac88e124, type: 2}
+  m_sharedMaterial: {fileID: -5286747938414298512, guid: 58e92ef5833f9504b8bfcfceac88e124,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1499,7 +1541,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 3
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 4096
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1535,6 +1577,40 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1989386540368441339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4565394288359278334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e647ef30a105a0b4d97700805c711355, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PUAP_TMP
+  animationLoop: 0
+  maxVisibleCharacters: 2147483647
+  effectDatabase: {fileID: 11400000, guid: 0a97180173ff42c44b15c72ff13ed943, type: 2}
+  upgradeNotice: Full version available on Unity Asset Store
+--- !u!114 &997566357278075921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4565394288359278334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c5b2b9221ac18f43b0b9514cc7cd170, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProceduralUIEffects.UITextTypewriter
+  charsPerSecond: 20
+  playOnEnable: 1
+  onTypingComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  upgradeInfo: Get dynamic speed control in the full version!
 --- !u!1 &4918552909282597037
 GameObject:
   m_ObjectHideFlags: 0

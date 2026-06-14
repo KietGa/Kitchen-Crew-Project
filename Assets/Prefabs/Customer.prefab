@@ -484,6 +484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waitingTimeMax: 20
+  rotationSpeed: 5
 --- !u!195 &6876317171838843837
 NavMeshAgent:
   m_ObjectHideFlags: 0

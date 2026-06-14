@@ -33,7 +33,7 @@ public class DeliveryManagerSingleUI : MonoBehaviour {
 
     public void SetRecipeSO(RecipeSO recipeSO, int tableIndex)
     {
-        recipeNameText.text = recipeSO.recipeName + $" (Table {tableIndex})";
+        recipeNameText.text = recipeSO.recipeName + $" (Table {tableIndex + 1})";
 
         foreach (Transform child in iconContainer)
         {

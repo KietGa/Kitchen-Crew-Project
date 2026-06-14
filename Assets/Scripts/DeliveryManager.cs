@@ -220,4 +220,9 @@ public class DeliveryManager : NetworkBehaviour {
     public int GetSuccessfulRecipesAmount() {
         return successfulRecipesAmount;
     }
+
+    public int GetTotalCoin()
+    {
+        return totalCoin;
+    }
 }

@@ -11,6 +11,7 @@ public class LobbyCreateUI : MonoBehaviour {
     [SerializeField] private Button createPublicButton;
     [SerializeField] private Button createPrivateButton;
     [SerializeField] private TMP_InputField lobbyNameInputField;
+    [SerializeField] private GameObject joinUI;
 
 
 
@@ -31,13 +32,13 @@ public class LobbyCreateUI : MonoBehaviour {
     }
 
     public void Show() {
+        joinUI.SetActive(false);
         gameObject.SetActive(true);
-
         createPublicButton.Select();
     }
 
-    private void Hide() {
+    public void Hide() {
         gameObject.SetActive(false);
+        joinUI.SetActive(true);
     }
-
 }

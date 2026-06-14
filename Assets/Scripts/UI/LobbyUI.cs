@@ -11,8 +11,10 @@ public class LobbyUI : MonoBehaviour {
 
     [SerializeField] private Button mainMenuButton;
     [SerializeField] private Button createLobbyButton;
+    [SerializeField] private Button joinButton;
     [SerializeField] private Button quickJoinButton;
     [SerializeField] private Button joinCodeButton;
+    [SerializeField] private Button refreshButton;
     [SerializeField] private TMP_InputField joinCodeInputField;
     [SerializeField] private TMP_InputField playerNameInputField;
     [SerializeField] private LobbyCreateUI lobbyCreateUI;
@@ -28,11 +30,18 @@ public class LobbyUI : MonoBehaviour {
         createLobbyButton.onClick.AddListener(() => {
             lobbyCreateUI.Show();
         });
+        joinButton.onClick.AddListener(() => {
+            lobbyCreateUI.Hide();
+        });
         quickJoinButton.onClick.AddListener(() => {
             KitchenGameLobby.Instance.QuickJoin();
         });
         joinCodeButton.onClick.AddListener(() => {
             KitchenGameLobby.Instance.JoinWithCode(joinCodeInputField.text);
+        });
+        refreshButton.onClick.AddListener(() =>
+        {
+            KitchenGameLobby.Instance.ListLobbies();
         });
 
         lobbyTemplate.gameObject.SetActive(false);

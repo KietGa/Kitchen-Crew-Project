@@ -18,6 +18,7 @@ public class TableCounter : BaseCounter
     private float timeCounter;
     private float waitingTime;
     private Customer customer;
+    private KitchenObject kitchenObject;
 
     private void Update()
     {
@@ -30,12 +31,15 @@ public class TableCounter : BaseCounter
 
     public override void Interact(Player player)
     {
+        if (waitingRecipeSO == null) return;
+
         if (player.HasKitchenObject())
         {
             if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject))
             {
+                kitchenObject = player.GetKitchenObject();
+                kitchenObject.SetKitchenObjectParent(this);
                 DeliverRecipe(plateKitchenObject);
-                player.GetKitchenObject().SetKitchenObjectParent(this);
             }
         }
     }
@@ -88,13 +92,23 @@ public class TableCounter : BaseCounter
         OnCustomerThinking?.Invoke(this, EventArgs.Empty);
     }
 
-    public void CustomerLeaving()
+    public void CustomerSuccessLeaving()
     {
-        CustomerLeavingClientRpc();
+        DestroyTableObjectClientRpc();
+        CustomerSuccessLeavingClientRpc();
     }
 
     [ClientRpc]
-    private void CustomerLeavingClientRpc()
+    private void DestroyTableObjectClientRpc()
+    {
+        if (kitchenObject != null) 
+        {
+            KitchenObject.DestroyKitchenObject(kitchenObject);
+        }
+    }
+
+    [ClientRpc]
+    private void CustomerSuccessLeavingClientRpc()
     {
         OnCustomerLeaving?.Invoke(this, EventArgs.Empty);
         customer = null;
@@ -102,6 +116,7 @@ public class TableCounter : BaseCounter
 
     public void CustomerFailedLeaving()
     {
+        DestroyTableObjectClientRpc();
         DeliveryManager.Instance.DeliverRecipe(DeliveryManager.Instance.GetIndexTableCounter(this), 0);
         CustomerFailedLeavingClientRpc();
     }
@@ -112,6 +127,28 @@ public class TableCounter : BaseCounter
         OnRecipeFailed?.Invoke(this, EventArgs.Empty);
         OnCustomerLeaving?.Invoke(this, EventArgs.Empty);
         customer = null;
+        waitingRecipeSO = null;
+    }
+
+
+    [ServerRpc(RequireOwnership = false)]
+    private void CustomerEatingServerRpc()
+    {
+        customer.Eating();
+        DeliveryCompleteClientRpc();
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void DeliveryFailedServerRpc()
+    {
+        customer.LeavingFailed();
+    }
+
+    [ClientRpc]
+    private void DeliveryCompleteClientRpc()
+    {
+        //DeliveryManager.Instance.DeliverySuccess(DeliveryManager.Instance.GetIndexTableCounter(this));
+        OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
         waitingRecipeSO = null;
     }
 
@@ -142,6 +179,7 @@ public class TableCounter : BaseCounter
                 }
             }
 
+
             if (plateContentsMatchesRecipe)
             {
                 // Player delivered the correct recipe!
@@ -150,29 +188,8 @@ public class TableCounter : BaseCounter
                 CustomerEatingServerRpc();
                 return;
             }
-
-            DeliveryFailedServerRpc();
         }
-    }
 
-    [ServerRpc(RequireOwnership = false)]
-    private void CustomerEatingServerRpc()
-    {
-        customer.Eating();
-        DeliveryCompleteClientRpc();
-    }
-
-    [ServerRpc(RequireOwnership = false)]
-    private void DeliveryFailedServerRpc() 
-    {
-        CustomerFailedLeaving();
-    }
-
-    [ClientRpc]
-    private void DeliveryCompleteClientRpc()
-    {
-        //DeliveryManager.Instance.DeliverySuccess(DeliveryManager.Instance.GetIndexTableCounter(this));
-        OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
-        waitingRecipeSO = null;
+        DeliveryFailedServerRpc();
     }
 }

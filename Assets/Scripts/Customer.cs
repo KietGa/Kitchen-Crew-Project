@@ -20,6 +20,7 @@ public class Customer : NetworkBehaviour
     private TableCounter tableCounter;
     private float orderTimeMax;
     [SerializeField] private float waitingTimeMax = 30f;
+    [SerializeField] private float rotationSpeed = 100f;
     private float timeCounter;
 
     private void Awake()
@@ -59,6 +60,7 @@ public class Customer : NetworkBehaviour
             
             case State.Thinking:
                 timeCounter -= Time.deltaTime;
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 90, 0), rotationSpeed * Time.deltaTime);
 
                 if (timeCounter < 0)
                 {
@@ -81,9 +83,7 @@ public class Customer : NetworkBehaviour
 
                 if (timeCounter < 0)
                 {
-                    state = State.Leaving;
-                    CustomerLeaveClientRpc();
-                    tableCounter.CustomerFailedLeaving();
+                    LeavingFailed();
                 }
 
                 break;
@@ -93,9 +93,7 @@ public class Customer : NetworkBehaviour
 
                 if (timeCounter < 0)
                 {
-                    state = State.Leaving;
-                    CustomerLeaveClientRpc();
-                    tableCounter.CustomerLeaving();
+                    LeavingSuccess();
                 }
                 break;
 
@@ -126,5 +124,19 @@ public class Customer : NetworkBehaviour
         {
             GetComponent<NetworkObject>().Despawn();
         }
+    }
+
+    public void LeavingFailed()
+    {
+        state = State.Leaving;
+        CustomerLeaveClientRpc();
+        tableCounter.CustomerFailedLeaving();
+    }
+
+    private void LeavingSuccess()
+    {
+        state = State.Leaving;
+        CustomerLeaveClientRpc();
+        tableCounter.CustomerSuccessLeaving();
     }
 }

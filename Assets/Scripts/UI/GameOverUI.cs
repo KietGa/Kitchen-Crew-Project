@@ -29,7 +29,7 @@ public class GameOverUI : MonoBehaviour {
         if (KitchenGameManager.Instance.IsGameOver()) {
             Show();
 
-            recipesDeliveredText.text = DeliveryManager.Instance.GetSuccessfulRecipesAmount().ToString();
+            recipesDeliveredText.text = DeliveryManager.Instance.GetTotalCoin().ToString();
         } else {
             Hide();
         }
