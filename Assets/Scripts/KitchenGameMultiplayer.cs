@@ -27,6 +27,7 @@ public class KitchenGameMultiplayer : NetworkBehaviour {
 
     [SerializeField] private KitchenObjectListSO kitchenObjectListSO;
     [SerializeField] private List<Color> playerColorList;
+    [SerializeField] private GameObject singleplayerObject;
 
 
     private NetworkList<PlayerData> playerDataNetworkList;
@@ -46,6 +47,8 @@ public class KitchenGameMultiplayer : NetworkBehaviour {
     }
 
     private void Start() {
+        singleplayerObject.SetActive(!playMultiplayer);
+
         if (!playMultiplayer) {
             // Singleplayer
             UnityTransport transport =
@@ -259,6 +262,11 @@ public class KitchenGameMultiplayer : NetworkBehaviour {
 
     public Color GetPlayerColor(int colorId) {
         return playerColorList[colorId];
+    }
+
+    public Color GetRandomColor()
+    {
+        return playerColorList[UnityEngine.Random.Range(0, playerColorList.Count)];
     }
 
     public void ChangePlayerColor(int colorId) {

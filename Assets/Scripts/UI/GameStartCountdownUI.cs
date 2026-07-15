@@ -36,10 +36,16 @@ public class GameStartCountdownUI : MonoBehaviour {
     }
 
     private void Update() {
+        Countdown();
+    }
+
+    private void Countdown()
+    {
         int countdownNumber = Mathf.CeilToInt(KitchenGameManager.Instance.GetCountdownToStartTimer());
         countdownText.text = countdownNumber.ToString();
 
-        if (previousCountdownNumber != countdownNumber) {
+        if (previousCountdownNumber != countdownNumber)
+        {
             previousCountdownNumber = countdownNumber;
             animator.SetTrigger(NUMBER_POPUP);
             SoundManager.Instance.PlayCountdownSound();

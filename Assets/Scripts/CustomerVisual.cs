@@ -2,21 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerVisual : MonoBehaviour {
-
-
+public class CustomerVisual : MonoBehaviour
+{
     [SerializeField] private MeshRenderer headMeshRenderer;
     [SerializeField] private MeshRenderer bodyMeshRenderer;
 
-
     private Material material;
 
-    private void Awake() {
+    private void Awake()
+    {
         SetMaterial();
-    }
-
-    public void SetPlayerColor(Color color) {
-        material.color = color;
+        RandomColor();
     }
 
     private void SetMaterial()
@@ -24,5 +20,10 @@ public class PlayerVisual : MonoBehaviour {
         material = new Material(headMeshRenderer.material);
         headMeshRenderer.material = material;
         bodyMeshRenderer.material = material;
+    }
+
+    private void RandomColor()
+    {
+        material.color = KitchenGameMultiplayer.Instance.GetRandomColor();
     }
 }

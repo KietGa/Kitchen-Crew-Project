@@ -10,6 +10,11 @@ public class GamePlayingClockUI : MonoBehaviour {
 
 
     private void Update() {
+        ShowTime();
+    }
+
+    private void ShowTime()
+    {
         timerImage.fillAmount = KitchenGameManager.Instance.GetGamePlayingTimerNormalized();
     }
 }

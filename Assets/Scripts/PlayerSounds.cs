@@ -15,11 +15,18 @@ public class PlayerSounds : MonoBehaviour {
     }
 
     private void Update() {
+        PlayFootStepSound();
+    }
+
+    private void PlayFootStepSound()
+    {
         footstepTimer -= Time.deltaTime;
-        if (footstepTimer < 0f) {
+        if (footstepTimer < 0f)
+        {
             footstepTimer = footstepTimerMax;
 
-            if (player.IsWalking()) {
+            if (player.IsWalking())
+            {
                 float volume = 1f;
                 SoundManager.Instance.PlayFootstepsSound(player.transform.position, volume);
             }

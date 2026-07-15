@@ -44,7 +44,11 @@ public class Customer : NetworkBehaviour
             return;
         }
 
+        StateHandler();
+    }
 
+    private void StateHandler()
+    {
         switch (state)
         {
             case State.Going:
@@ -57,7 +61,7 @@ public class Customer : NetworkBehaviour
 
                 break;
 
-            
+
             case State.Thinking:
                 timeCounter -= Time.deltaTime;
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 90, 0), rotationSpeed * Time.deltaTime);
@@ -70,14 +74,14 @@ public class Customer : NetworkBehaviour
                     if (KitchenGameManager.Instance.IsGamePlaying())
                     {
                         DeliveryManager.Instance.SpawnRecipeClientRpc(
-                            DeliveryManager.Instance.GetIndexTableCounter(tableCounter), 
+                            DeliveryManager.Instance.GetIndexTableCounter(tableCounter),
                             waitingTimeMax, DeliveryManager.Instance.GetRandomRecipeIndex);
                     }
                 }
 
                 break;
 
-                
+
             case State.Waiting:
                 timeCounter -= Time.deltaTime;
 

@@ -181,6 +181,7 @@ GameObject:
   - component: {fileID: 7625304488838337611}
   - component: {fileID: 588612874374970153}
   - component: {fileID: 6400895657626091987}
+  - component: {fileID: 5939486016267879466}
   m_Layer: 0
   m_Name: CustomerVisual
   m_TagString: Untagged
@@ -241,6 +242,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransitionStateInfoList: []
   m_Animator: {fileID: 588612874374970153}
+--- !u!114 &5939486016267879466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6062367358071624029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 118fe73db127ea243abb0af3ee33345e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  headMeshRenderer: {fileID: 2319824954551635459}
+  bodyMeshRenderer: {fileID: 1431222409867136937}
 --- !u!1 &7323147233386371520
 GameObject:
   m_ObjectHideFlags: 0
